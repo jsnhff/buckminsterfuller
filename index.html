@@ -41,16 +41,22 @@
             var markovSherlock;
             window.onload = function() {
                 // x = new markov(text, type, regex);
-                markovSherlock = new markov(corpus, "string", /[.^\w]+ /g); //sherlock holmes corpus
-
-                var mSh = "";
-                for (var i = 0; i < 12; i++) {
-                    mSh += markovSherlock.gen(1)
-                };
-                $string = mSh;
-                console.log($string);
+                markovSherlock = new markov(corpus, "string", /[.,?"();!:—^\w]+ /g); //sherlock holmes corpus
+                sentences = corpus.split(". ");
+                if(Math.random() < .5){
+                    var i = Math.floor(sentences.length*Math.random());
+                    console.log(sentences[i]);
+                    $string = sentences[i];
+                } else {
+                    var markovString = "";
+                        for (var i = 0; i < 12; i++) {
+                        markovString += markovSherlock.gen(1)
+                    };
+                    $string = markovString.toLowerCase();
+                    $string = $string.slice(0,-1);
+                }
                 $string = $string.replace(/\./g, "");
-                console.log("new string: "+$string);
+                $string = $string.replace(/\s+i\s+/, " I ");
                 var finalString = $string.replace(/\,/g, "");
 
                 $('#wisdom').html(finalString+".");
