@@ -14,8 +14,13 @@
     background: linear-gradient(to bottom,  #d2ff52 0%,#91e842 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842',GradientType=0 ); /* IE6-9 */
 }
-
-section p:first-letter {
-    text-transform: capitalize
+.quote {
+    quotes: "“" "”" "‘" "’";
+}
+.quote:before {
+    content: open-quote;
+}
+.quote:after {
+    content: close-quote;
 }
 
